@@ -6,6 +6,7 @@
 // import '../network/result/simple_result.dart';
 
 class LocalDB {
+  static init() {}
   //static late final Isar _isar;
 
 // static Future<void> init() async {
