@@ -1,3 +1,4 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/instance_manager.dart';
 import 'package:todo_state/common/common.dart';
@@ -25,7 +26,7 @@ class AppState extends State<App> with Nav, WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
-    Get.put(TodoDataHolder());
+    Get.put(TodoCubit());
     WidgetsBinding.instance.addObserver(this);
   }
 
@@ -40,15 +41,19 @@ class AppState extends State<App> with Nav, WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return CustomThemeApp(
       child: Builder(builder: (context) {
-        return MaterialApp(
-            navigatorKey: App.navigatorKey,
-            localizationsDelegates: context.localizationDelegates,
-            supportedLocales: context.supportedLocales,
-            locale: context.locale,
-            title: 'Image Finder',
-            theme: context.themeType.themeData,
-            home: const MainScreen(),
-          );
+        return BlocProvider(
+          create: (BuildContext context) => TodoCubit(),
+          // BlocProvider로 MaterialApp을 감싸면 MaterialApp은 context를 통해 TodoCubit에 접근할 수 있음
+          child: MaterialApp(
+              navigatorKey: App.navigatorKey,
+              localizationsDelegates: context.localizationDelegates,
+              supportedLocales: context.supportedLocales,
+              locale: context.locale,
+              title: 'Image Finder',
+              theme: context.themeType.themeData,
+              home: const MainScreen(),
+            ),
+        );
       }),
     );
   }

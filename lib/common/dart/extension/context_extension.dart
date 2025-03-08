@@ -1,3 +1,4 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_state/common/theme/custom_theme.dart';
 import 'package:todo_state/common/theme/custom_theme_holder.dart';
 import 'package:flutter/material.dart';
@@ -45,4 +46,7 @@ extension ContextExtension on BuildContext {
 
   Function(CustomTheme) get changeTheme => CustomThemeHolder.of(this).changeTheme;
 
+  // 자주 사용되는 Cubit에 저장되는 정보 가져오는 메소드
+  TodoCubit get readTodoCubit => read();
+  TodoCubit get watchTodoCubit => watch();
 }

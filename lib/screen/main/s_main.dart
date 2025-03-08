@@ -1,4 +1,5 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_state/screen/main/tab/tab_item.dart';
 import 'package:todo_state/screen/main/tab/tab_navigator.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,7 @@ class MainScreen extends StatefulWidget {
   State<MainScreen> createState() => MainScreenState();
 }
 
-class MainScreenState extends State<MainScreen> with SingleTickerProviderStateMixin, TodoDataProvider {
+class MainScreenState extends State<MainScreen> with SingleTickerProviderStateMixin {
   TabItem _currentTab = TabItem.todo;
   final tabs = [TabItem.todo, TabItem.search];
   final List<GlobalKey<NavigatorState>> navigatorKeys = [];
@@ -51,7 +52,8 @@ class MainScreenState extends State<MainScreen> with SingleTickerProviderStateMi
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
             // TodoDataHolder가 MainScreen보다 상위에 있어서 context.holder 사용 가능
-            todoData.addTodo();
+            //final todoData = context.read<TodoCubit>(); // == Get.find
+            context.readTodoCubit.addTodo();
           },
           child: const Icon(EvaIcons.plus),
         ),
