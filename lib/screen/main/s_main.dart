@@ -1,5 +1,6 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_state/data/memory/bloc/todo_event.dart';
 import 'package:todo_state/screen/main/tab/tab_item.dart';
 import 'package:todo_state/screen/main/tab/tab_navigator.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +54,7 @@ class MainScreenState extends State<MainScreen> with SingleTickerProviderStateMi
           onPressed: () async {
             // TodoDataHolder가 MainScreen보다 상위에 있어서 context.holder 사용 가능
             //final todoData = context.read<TodoCubit>(); // == Get.find
-            context.readTodoCubit.addTodo();
+            context.readTodoBloc.add(TodoAddEvent());
           },
           child: const Icon(EvaIcons.plus),
         ),

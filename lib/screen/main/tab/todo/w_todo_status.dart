@@ -1,4 +1,5 @@
 import 'package:todo_state/common/common.dart';
+import 'package:todo_state/data/memory/bloc/todo_event.dart';
 import 'package:todo_state/data/memory/todo_status.dart';
 import 'package:todo_state/screen/main/tab/todo/w_fire.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ class TodoStatusWidget extends StatelessWidget  {
   Widget build(BuildContext context) {
     return Tap(
       onTap: () {
-        context.readTodoCubit.changeTodoStatus(todo);
+        context.readTodoBloc.add(TodoStatusUpdateEvent(todo));
       },
       child: SizedBox(
           width: 50,
