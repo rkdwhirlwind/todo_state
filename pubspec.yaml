@@ -99,7 +99,8 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^5.0.0
+  # flutter_lints: ^5.0.0
+  dart_code_metrics: ^5.7.6
   retrofit_generator: 8.0.0
   build_runner: ^2.4.10
   json_serializable: ^6.6.1
@@ -111,6 +112,9 @@ dev_dependencies:
   mock_web_server: ^5.0.0-nullsafety.1
   flutter_oss_licenses: ^2.0.1
   test: ^1.24.2
+
+dependency_overrides:
+  analyzer: ^5.13.0 # dart_code_metrics와 test 패키지의 버전 충돌 방지
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
